@@ -1,0 +1,16 @@
+.idea
+
+wordpress_data/*
+!wordpress_data/wp-content
+
+wordpress_data/wp-content/*
+!wordpress_data/wp-content/plugins
+!wordpress_data/wp-content/themes
+
+wordpress_data/wp-content/plugins/*
+!wordpress_data/wp-content/plugins/designthemes-core-features
+
+wordpress_data/wp-content/themes/*
+!wordpress_data/wp-content/themes/petsworld
+
+wordpress_data/wp-content/themes/petsworld/demo-content
