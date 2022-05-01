@@ -73,7 +73,7 @@ if (! class_exists ( 'DTPetsPostType' )) {
 				'public' 			  => true,
 				'show_ui' 			  => true,
 				'menu_position' 	  => 4,
-				'menu_icon'			  => 'dashicons-twitter',
+				'menu_icon'			  => 'dashicons-pets',
 				'show_in_menu' 		  => true,
 				'show_in_nav_menus'   => true,
 				'publicly_queryable'  => true,

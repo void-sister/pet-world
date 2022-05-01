@@ -1,12 +1,12 @@
 <?php
-if (! class_exists ( 'DTPetShelterPostType' )) {
+if (! class_exists ( 'DTVetPostType' )) {
 
-    class DTPetShelterPostType {
+    class DTVetPostType {
 
         function __construct() {
 
             add_action( 'add_meta_boxes', array(
-                $this, 'dt_pet_shelters_metaboxes' ) );
+                $this, 'dt_vets_metaboxes' ) );
 
             add_action ( 'init', array (
                 $this, 'dt_init' ) );
@@ -16,21 +16,21 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
                 $this, 'dt_template_include' ) );
         }
 
-        function dt_pet_shelters_metaboxes() {
+        function dt_vets_metaboxes() {
 
-            add_meta_box( 'dt-pet_shelter-owner-info', __('Extra Info','dt-petshop-plugin'),
-                array( $this, 'dt_pet_shelter_submitter_metabox'),
-                'dt_cpt_pet_shelters', 'side', 'high');
+            add_meta_box( 'dt-vet-owner-info', __('Extra Info','dt-petshop-plugin'),
+                array( $this, 'dt_vet_submitter_metabox'),
+                'dt_cpt_vets', 'side', 'high');
 
 
-            add_meta_box( 'dt-pet_shelter-default-metabox', __('Default Options','dt-petshop-plugin'),
+            add_meta_box( 'dt-vet-default-metabox', __('Default Options','dt-petshop-plugin'),
                 array( $this, 'dt_pet_default_metabox'),
-                'dt_cpt_pet_shelters', 'normal', 'high');
+                'dt_cpt_vets', 'normal', 'high');
         }
 
-        function dt_pet_shelter_submitter_metabox( $post ) {
+        function dt_vet_submitter_metabox( $post ) {
 
-            $submitter = get_post_meta ( $post->ID, '_pet_shelter_submitter', TRUE );
+            $submitter = get_post_meta ( $post->ID, '_vet_submitter', TRUE );
 
             if( empty( $submitter) ) {
                 $submitter = get_current_user_id();
@@ -43,7 +43,7 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
         }
 
         function dt_pet_default_metabox() {
-            include_once plugin_dir_path ( __FILE__ ) . 'metaboxes/dt_cpt_pet_shelter_metabox.php';
+            include_once plugin_dir_path ( __FILE__ ) . 'metaboxes/dt_cpt_vet_metabox.php';
         }
 
         function dt_init() {
@@ -51,20 +51,20 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
             # Save Post Meta Data
             add_action ( 'save_post', array ( $this, 'save_post_meta' ) );
 
-            # Pet Shelter
-            $labels = array( 'name'   => __ ( 'Pet Shelters', 'dt-petshop-plugin' ),
-                'singular_name' 	  => __ ( 'Pet Shelter', 'dt-petshop-plugin' ),
-                'menu_name' 		  => __ ( 'Pet Shelters', 'dt-petshop-plugin' ),
-                'add_new' 			  => __ ( 'Add New Pet Shelter', 'dt-petshop-plugin' ),
-                'add_new_item' 		  => __ ( 'Add New Pet Shelter', 'dt-petshop-plugin' ),
-                'new_item' 			  => __ ( 'New Pet Shelter', 'dt-petshop-plugin' ),
-                'edit_item' 		  => __ ( 'Edit Pet Shelter', 'dt-petshop-plugin' ),
-                'view_item' 		  => 	__ ( 'View Pet Shelter', 'dt-petshop-plugin' ),
-                'all_items' 		  => 	__ ( 'Pet Shelters', 'dt-petshop-plugin' ),
-                'search_items' 		  =>	__ ( 'Search Pet Shelters', 'dt-petshop-plugin' ),
-                'parent_item_colon'   => 	__ ( 'Parent Pet Shelters:', 'dt-petshop-plugin' ),
-                'not_found' 		  => 	__ ( 'No pet shelters found', 'dt-petshop-plugin' ),
-                'not_found_in_trash'  => 	__ ( 'No pet shelters found in Trash', 'dt-petshop-plugin' ));
+            # Vet
+            $labels = array( 'name'   => __ ( 'Vets', 'dt-petshop-plugin' ),
+                'singular_name' 	  => __ ( 'Vet', 'dt-petshop-plugin' ),
+                'menu_name' 		  => __ ( 'Vets', 'dt-petshop-plugin' ),
+                'add_new' 			  => __ ( 'Add New Vet', 'dt-petshop-plugin' ),
+                'add_new_item' 		  => __ ( 'Add New Vet', 'dt-petshop-plugin' ),
+                'new_item' 			  => __ ( 'New Vet', 'dt-petshop-plugin' ),
+                'edit_item' 		  => __ ( 'Edit Vet', 'dt-petshop-plugin' ),
+                'view_item' 		  => 	__ ( 'View Vet', 'dt-petshop-plugin' ),
+                'all_items' 		  => 	__ ( 'Vets', 'dt-petshop-plugin' ),
+                'search_items' 		  =>	__ ( 'Search Vets', 'dt-petshop-plugin' ),
+                'parent_item_colon'   => 	__ ( 'Parent Vets:', 'dt-petshop-plugin' ),
+                'not_found' 		  => 	__ ( 'No pet vets found', 'dt-petshop-plugin' ),
+                'not_found_in_trash'  => 	__ ( 'No pet vets found in Trash', 'dt-petshop-plugin' ));
 
             $args = array( 'labels' => $labels,
                 'hierarchical' 		  => false,
@@ -74,59 +74,48 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
                 'show_ui' 			  => true,
                 'show_in_menu' 		  => true,
                 'menu_position' 	  => 5,
-                'menu_icon'			  => 'dashicons-building',
+                'menu_icon'			  => 'dashicons-heart',
                 'show_in_nav_menus'   => true,
                 'publicly_queryable'  => true,
                 'exclude_from_search' => false,
                 'has_archive' 		  => true,
                 'query_var' 	  	  => true,
                 'can_export' 	  	  => true,
-                'rewrite' 		  	  => array( 'slug' => 'dt_cpt_pet_shelters' ),
+                'rewrite' 		  	  => array( 'slug' => 'dt_cpt_vets' ),
                 'capability_type' 	  => 'post');
 
-            register_post_type( 'dt_cpt_pet_shelters', $args );
+            register_post_type( 'dt_cpt_vets', $args );
 
-            # Pet Shelter District
-            register_taxonomy( 'dt_tax_pet_shelter_districts', 'dt_cpt_pet_shelters', array(
+            # Vet District
+            register_taxonomy( 'dt_tax_vet_districts', 'dt_cpt_vets', array(
                 "hierarchical" => true,
                 "label" => __( "Districts",'dt-petshop-plugin' ),
                 "singular_label" => __( "District",'dt-petshop-plugin' ),
                 "show_admin_column" => true,
                 "query_var" => true,
-                "rewrite" => array( 'slug' => 'dt_pet_shelter_districts' ),
+                "rewrite" => array( 'slug' => 'dt_vet_districts' ),
                 'show_in_rest' => true,
             ) );
 
-            # Pet Shelter Experience
-            register_taxonomy( 'dt_tax_pet_shelter_experiences', 'dt_cpt_pet_shelters', array(
+            # Vet Experience
+            register_taxonomy( 'dt_tax_vet_experiences', 'dt_cpt_vets', array(
                 "hierarchical" => true,
                 "label" => __( "Experiences",'dt-petshop-plugin' ),
                 "singular_label" => __( "Experience",'dt-petshop-plugin' ),
                 "show_admin_column" => true,
                 "query_var" => true,
-                "rewrite" => array( 'slug' => 'dt_tax_pet_shelter_experiences' ),
+                "rewrite" => array( 'slug' => 'dt_tax_vet_experiences' ),
                 'show_in_rest' => true,
             ) );
 
-            # Pet Shelter Specialization
-            register_taxonomy( 'dt_tax_pet_shelter_specialization', 'dt_cpt_pet_shelter_specialization', array(
+            # Vet Services
+            register_taxonomy( 'dt_tax_vet_services', 'dt_cpt_vet_services', array(
                 "hierarchical" => true,
-                "label" => __( "Specializations",'dt-petshop-plugin' ),
-                "singular_label" => __( "Specialization",'dt-petshop-plugin' ),
+                "label" => __( "Services",'dt-petshop-plugin' ),
+                "singular_label" => __( "Service",'dt-petshop-plugin' ),
                 "show_admin_column" => true,
                 "query_var" => true,
-                "rewrite" => array( 'slug' => 'dt_tax_pet_shelter_specialization' ),
-                'show_in_rest' => true,
-            ) );
-
-            # Pets
-            register_taxonomy( 'dt_tax_pet_shelter_pets', 'dt_cpt_pet_shelter_pets', array(
-                "hierarchical" => true,
-                "label" => __( "Pets",'dt-petshop-plugin' ),
-                "singular_label" => __( "Pet",'dt-petshop-plugin' ),
-                "show_admin_column" => true,
-                "query_var" => true,
-                "rewrite" => array( 'slug' => 'dt_pet_shelter_pets' ),
+                "rewrite" => array( 'slug' => 'dt_tax_vet_services' ),
                 'show_in_rest' => true,
             ) );
         }
@@ -137,8 +126,8 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
                 if ( wp_verify_nonce($_POST['_inline_edit'], 'inlineeditnonce')) return;
             endif;
 
-            if( key_exists( 'dt_theme_pet_shelter_meta_nonce',$_POST ) ) :
-                if ( ! wp_verify_nonce( $_POST['dt_theme_pet_shelter_meta_nonce'], 'dt_theme_pet_shelter_nonce') ) return;
+            if( key_exists( 'dt_theme_vet_meta_nonce',$_POST ) ) :
+                if ( ! wp_verify_nonce( $_POST['dt_theme_vet_meta_nonce'], 'dt_theme_vet_nonce') ) return;
             endif;
 
             if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
@@ -147,7 +136,7 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
                 return;
             endif;
 
-            if ( (key_exists('post_type', $_POST)) && ('dt_cpt_pet_shelters' == $_POST['post_type']) ) :
+            if ( (key_exists('post_type', $_POST)) && ('dt_cpt_vets' == $_POST['post_type']) ) :
 
                 $layout = isset($_POST['layout']) ? $_POST['layout'] : '';
                 if($layout) :
@@ -178,9 +167,10 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
                     $settings ['items_thumbnail'] = isset ( $_POST ['items_thumbnail'] ) ? $_POST ['items_thumbnail'] : "";
                     $settings ['items_name'] = isset ( $_POST ['items_name'] ) ? $_POST ['items_name'] : "";
 
-                    $settings ['phone'] = isset ( $_POST ['phone'] ) ? $_POST ['phone'] : "";
-                    $settings ['owner_name'] = isset ( $_POST ['owner_name'] ) ? $_POST ['owner_name'] : "";
-                    $settings ['address'] = isset ( $_POST ['address'] ) ? $_POST ['address'] : "";
+                    $settings ['personal_phone'] = isset ( $_POST ['personal_phone'] ) ? $_POST ['personal_phone'] : "";
+                    $settings ['clinic_title'] = isset ( $_POST ['clinic_title'] ) ? $_POST ['clinic_title'] : "";
+                    $settings ['clinic_phone'] = isset ( $_POST ['clinic_phone'] ) ? $_POST ['clinic_phone'] : "";
+                    $settings ['clinic_address'] = isset ( $_POST ['clinic_address'] ) ? $_POST ['clinic_address'] : "";
                     $settings ['website_link'] = isset ( $_POST ['website_link'] ) ? $_POST ['website_link'] : "";
                     $settings ['instagram_social_link'] = isset ( $_POST ['instagram_social_link'] ) ? $_POST ['instagram_social_link'] : "";
                     $settings ['facebook_social_link'] = isset ( $_POST ['facebook_social_link'] ) ? $_POST ['facebook_social_link'] : "";
@@ -194,15 +184,14 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
 
         function dt_template_include($template) {
 
-            if (is_singular( 'dt_cpt_pet_shelters' )) {
-                if (! file_exists ( get_stylesheet_directory () . '/single-dt_cpt_pet_shelters.php' )) {
-                    $template = plugin_dir_path ( __FILE__ ) . 'templates/single-dt_cpt_pet_shelters.php';
+            if (is_singular( 'dt_cpt_vets' )) {
+                if (! file_exists ( get_stylesheet_directory () . '/single-dt_cpt_vets.php' )) {
+                    $template = plugin_dir_path ( __FILE__ ) . 'templates/single-dt_cpt_vets.php';
                 }
-            } elseif ( is_tax('dt_tax_pet_shelter_districts') || is_tax('dt_tax_pet_sitter_experiences') ||
-                is_tax('dt_tax_pet_shelter_specialization') || is_tax('dt_tax_pet_shelter_pets') ) {
+            } elseif ( is_tax('dt_tax_vet_districts') || is_tax('dt_tax_vet_experiences') || is_tax('dt_tax_vet_services') ) {
 
-                if (! file_exists ( get_stylesheet_directory () . '/taxonomy-dt_cpt_pet_shelters.php' )) {
-                    $template = plugin_dir_path ( __FILE__ ) . 'templates/taxonomy-dt_cpt_pet_shelters.php';
+                if (! file_exists ( get_stylesheet_directory () . '/taxonomy-dt_cpt_vets.php' )) {
+                    $template = plugin_dir_path ( __FILE__ ) . 'templates/taxonomy-dt_cpt_vets.php';
                 }
             }
             return $template;

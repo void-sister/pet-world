@@ -16,16 +16,16 @@ if (! class_exists ( 'DTCoreCustomPostTypes' )) {
 				new DTPetsPostType();
 			}
 
-            // Volunteers Post Type
-            require_once plugin_dir_path ( __FILE__ ) . '/dt-volunteers-post-type.php';
-            if( class_exists('DTVolunteersPostType') ) {
-                new DTVolunteersPostType();
-            }
-
             // Pet Shelters Post Type
             require_once plugin_dir_path ( __FILE__ ) . '/dt-pet-shelters-post-type.php';
-            if( class_exists('DTPetSheltersPostType') ) {
-                new DTPetSheltersPostType();
+            if( class_exists('DTPetShelterPostType') ) {
+                new DTPetShelterPostType();
+            }
+
+            // Vets Post Type
+            require_once plugin_dir_path ( __FILE__ ) . '/dt-vets-post-type.php';
+            if( class_exists('DTVetPostType') ) {
+                new DTVetPostType();
             }
 
 			// Pet Sitters Post Type
