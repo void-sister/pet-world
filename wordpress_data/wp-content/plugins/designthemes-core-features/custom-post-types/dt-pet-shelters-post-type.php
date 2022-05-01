@@ -43,7 +43,7 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
         }
 
         function dt_pet_default_metabox() {
-            include_once plugin_dir_path ( __FILE__ ) . 'metaboxes/dt_cpt_pet_shelter_metabox.php';
+            include_once plugin_dir_path ( __FILE__ ) . 'metaboxes/dt_cpt_pet_shelters_metabox.php';
         }
 
         function dt_init() {
@@ -198,7 +198,7 @@ if (! class_exists ( 'DTPetShelterPostType' )) {
                 if (! file_exists ( get_stylesheet_directory () . '/single-dt_cpt_pet_shelters.php' )) {
                     $template = plugin_dir_path ( __FILE__ ) . 'templates/single-dt_cpt_pet_shelters.php';
                 }
-            } elseif ( is_tax('dt_tax_pet_shelter_districts') || is_tax('dt_tax_pet_sitter_experiences') ||
+            } elseif ( is_tax('dt_tax_pet_shelter_districts') || is_tax('dt_tax_pet_shelter_experiences') ||
                 is_tax('dt_tax_pet_shelter_specialization') || is_tax('dt_tax_pet_shelter_pets') ) {
 
                 if (! file_exists ( get_stylesheet_directory () . '/taxonomy-dt_cpt_pet_shelters.php' )) {

@@ -68,6 +68,12 @@ if (! class_exists ( 'DTCoreCustomPostTypes' )) {
 				|| $_GET['taxonomy'] == 'dt_tax_pet_genders' || $_GET['taxonomy'] == 'dt_tax_pet_sizes'
 				|| $_GET['taxonomy'] == 'dt_tax_pet_types' /*|| $_GET['taxonomy'] == 'dt_tax_pet_services' */
 
+                || $_GET['taxonomy'] == 'dt_tax_pet_shelter_districts' || $_GET['taxonomy'] == 'dt_tax_pet_shelter_experiences'
+                || $_GET['taxonomy'] == 'dt_tax_pet_shelter_specialization' || $_GET['taxonomy'] == 'dt_tax_pet_shelter_pets'
+
+                || $_GET['taxonomy'] == 'dt_tax_vet_districts' || $_GET['taxonomy'] == 'dt_tax_vet_experiences'
+                || $_GET['taxonomy'] == 'dt_tax_vet_services'
+
 				|| $_GET['taxonomy'] == 'dt_tax_pet_sitter_experiences' || $_GET['taxonomy'] == 'dt_tax_pet_sitter_genders'
 				|| $_GET['taxonomy'] == 'dt_tax_pet_sitter_roles') {
 
