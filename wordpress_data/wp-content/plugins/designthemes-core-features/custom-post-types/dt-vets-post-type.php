@@ -43,7 +43,7 @@ if (! class_exists ( 'DTVetPostType' )) {
         }
 
         function dt_pet_default_metabox() {
-            include_once plugin_dir_path ( __FILE__ ) . 'metaboxes/dt_cpt_vet_metabox.php';
+            include_once plugin_dir_path ( __FILE__ ) . 'metaboxes/dt_cpt_vets_metabox.php';
         }
 
         function dt_init() {
