@@ -108,14 +108,14 @@ if (! class_exists ( 'DTPetsPostType' )) {
 				'show_in_rest' => true,
 			) );
 
-			# Pet City
-			register_taxonomy( 'dt_tax_pet_cities', 'dt_cpt_pets', array( 
+			# Pet District
+			register_taxonomy( 'dt_tax_pet_districts', 'dt_cpt_pets', array(
 				"hierarchical" => true,
-				"label" => __( "Cities",'dt-petshop-plugin' ),
-				"singular_label" => __( "City",'dt-petshop-plugin' ),
+				"label" => __( "Districts",'dt-petshop-plugin' ),
+				"singular_label" => __( "District",'dt-petshop-plugin' ),
 				"show_admin_column" => true,
 				"query_var" => true,
-				"rewrite" => array( 'slug' => 'dt_pet_cities' ),
+				"rewrite" => array( 'slug' => 'dt_pet_districts' ),
 				'show_in_rest' => true,
 			) );			
 

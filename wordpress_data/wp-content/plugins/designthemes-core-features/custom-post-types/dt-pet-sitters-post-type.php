@@ -97,14 +97,14 @@ if (! class_exists ( 'DTPetSitterPostType' )) {
 				'show_in_rest' => true,
 			) );			
 
-			# Pet Sitter City
-			register_taxonomy( 'dt_tax_pet_sitter_cities', 'dt_cpt_pet_sitters', array( 
+			# Pet Sitter District
+			register_taxonomy( 'dt_tax_pet_sitter_districts', 'dt_cpt_pet_sitters', array(
 				"hierarchical" => true,
-				"label" => __( "Cities",'dt-petshop-plugin' ),
-				"singular_label" => __( "City",'dt-petshop-plugin' ),
+				"label" => __( "Districts",'dt-petshop-plugin' ),
+				"singular_label" => __( "District",'dt-petshop-plugin' ),
 				"show_admin_column" => true,
 				"query_var" => true,
-				"rewrite" => array( 'slug' => 'dt_pet_sitter_cities' ),
+				"rewrite" => array( 'slug' => 'dt_pet_sitter_districts' ),
 				'show_in_rest' => true,
 			) );
 
